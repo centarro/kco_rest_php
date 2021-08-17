@@ -55,7 +55,7 @@ class ApiResponseTest extends BaseTestCase
             'Location' => ['https://example.com/new-location']
         ]);
         $this->assertEquals(['application/json'], $r->getHeader('Content-Type'));
-        $this->assertNull($r->getHeader('Content-Length'));
+        $this->assertEmpty($r->getHeader('Content-Length'));
 
         $this->assertEquals('https://example.com/new-location', $r->getLocation());
     }

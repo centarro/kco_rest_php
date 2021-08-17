@@ -34,6 +34,9 @@ class ApiResponse
      */
     private $headers = [];
 
+    /** @var array<string, string> Map of lowercase header name => original name at registration */
+    private $headerNames  = [];
+
     /**
      * HTTP body binary payout
      */
@@ -98,7 +101,24 @@ class ApiResponse
      */
     public function setHeaders($headers)
     {
-        $this->headers = $headers;
+        $this->headerNames = $this->headers = [];
+        foreach ($headers as $header => $value) {
+            if (is_int($header)) {
+                // Numeric array keys are converted to int by PHP but having a header name '123' is not forbidden by the spec
+                // and also allowed in withHeader(). So we need to cast it to string again for the following assertion to pass.
+                $header = (string) $header;
+            }
+            $this->assertHeader($header);
+            $value = $this->normalizeHeaderValue($value);
+            $normalized = strtolower($header);
+            if (isset($this->headerNames[$normalized])) {
+                $header = $this->headerNames[$normalized];
+                $this->headers[$header] = array_merge($this->headers[$header], $value);
+            } else {
+                $this->headerNames[$normalized] = $header;
+                $this->headers[$header] = $value;
+            }
+        }
         return $this;
     }
 
@@ -128,12 +148,22 @@ class ApiResponse
     /**
      * Gets single header value
      *
-     * @param name Header name
-     * @return Header values
+     * @param string $name Case-insensitive header field name.
+     * @return string[] An array of string values as provided for the given
+     *    header. If the header does not appear in the message, this method MUST
+     *    return an empty array.
      */
     public function getHeader($name)
     {
-        return isset($this->headers[$name]) ? $this->headers[$name] : null;
+        $header = strtolower($name);
+
+        if (!isset($this->headerNames[$header])) {
+            return [];
+        }
+
+        $header = $this->headerNames[$header];
+
+        return $this->headers[$header];
     }
 
     /**
@@ -143,6 +173,77 @@ class ApiResponse
      */
     public function getLocation()
     {
-        return empty($this->headers['Location']) ? null : $this->headers['Location'][0];
+        $header = $this->getHeader('Location');
+        return empty($header) ? null : $header[0];
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return string[]
+     */
+    private function normalizeHeaderValue($value): array
+    {
+        if (!is_array($value)) {
+            return $this->trimHeaderValues([$value]);
+        }
+
+        if (count($value) === 0) {
+            throw new \InvalidArgumentException('Header value can not be an empty array.');
+        }
+
+        return $this->trimHeaderValues($value);
+    }
+
+    /**
+     * Trims whitespace from the header values.
+     *
+     * Spaces and tabs ought to be excluded by parsers when extracting the field value from a header field.
+     *
+     * header-field = field-name ":" OWS field-value OWS
+     * OWS          = *( SP / HTAB )
+     *
+     * @param mixed[] $values Header values
+     *
+     * @return string[] Trimmed header values
+     *
+     * @see https://tools.ietf.org/html/rfc7230#section-3.2.4
+     */
+    private function trimHeaderValues(array $values): array
+    {
+        return array_map(function ($value) {
+            if (!is_scalar($value) && null !== $value) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Header value must be scalar or null but %s provided.',
+                    is_object($value) ? get_class($value) : gettype($value)
+                ));
+            }
+
+            return trim((string) $value, " \t");
+        }, array_values($values));
+    }
+
+    /**
+     * @see https://tools.ietf.org/html/rfc7230#section-3.2
+     *
+     * @param mixed $header
+     */
+    private function assertHeader($header): void
+    {
+        if (!is_string($header)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Header name must be a string but %s provided.',
+                is_object($header) ? get_class($header) : gettype($header)
+            ));
+        }
+
+        if (! preg_match('/^[a-zA-Z0-9\'`#$%&*+.^_|~!-]+$/', $header)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    '"%s" is not valid header name',
+                    $header
+                )
+            );
+        }
     }
 }
