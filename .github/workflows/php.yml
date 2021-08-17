@@ -15,9 +15,6 @@ jobs:
           # @todo need to bump phpunit for 8.0 testing
           # - "8.0"
     steps:
-      - name: "Set credentials"
-        env:
-          CREDENTIALS: ${{ secrets.CREDENTIALS }}    
       - name: "Checkout"
         uses: "actions/checkout@v2"
       - name: "Install PHP"
@@ -31,5 +28,7 @@ jobs:
       #- name: "PHPCS"
       #  run: "php vendor/bin/phpcs src"
       - name: "PHPUnit"
+        env:
+          CREDENTIALS: ${{ secrets.CREDENTIALS }}    
         run: "php vendor/bin/phpunit" 
 
