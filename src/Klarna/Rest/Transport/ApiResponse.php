@@ -52,7 +52,7 @@ class ApiResponse
     /**
      * Sets HTTP Status code.
      *
-     * @param status HTTP status
+     * @param int HTTP status
      * @return self
      */
     public function setStatus($status)
@@ -64,7 +64,7 @@ class ApiResponse
     /**
      * Gets HTTP Status code.
      *
-     * @return Status code
+     * @return int|null code
      */
     public function getStatus()
     {
@@ -74,7 +74,7 @@ class ApiResponse
     /**
      * Sets binary body payload.
      *
-     * @param body Payout
+     * @param string $body
      * @return self
      */
     public function setBody($body)
@@ -86,7 +86,7 @@ class ApiResponse
     /**
      * Gets binary body payload.
      *
-     * @return Payout
+     * @return string|null
      */
     public function getBody()
     {
@@ -96,7 +96,7 @@ class ApiResponse
     /**
      * Sets HTTP headers map
      *
-     * @param headers Headers
+     * @param array $headers
      * @return self
      */
     public function setHeaders($headers)
@@ -125,8 +125,8 @@ class ApiResponse
     /**
      * Sets single HTTP header value.
      *
-     * @param name Header name
-     * @param values Header values
+     * @param string $name
+     * @param array $values
      * @return self
      */
     public function setHeader($name, $values)
@@ -136,9 +136,29 @@ class ApiResponse
     }
 
     /**
-     * Gets HTTP Headers map
+     * Retrieves all message header values.
      *
-     * @return Headers
+     * The keys represent the header name as it will be sent over the wire, and
+     * each value is an array of strings associated with the header.
+     *
+     *     // Represent the headers as a string
+     *     foreach ($message->getHeaders() as $name => $values) {
+     *         echo $name . ": " . implode(", ", $values);
+     *     }
+     *
+     *     // Emit headers iteratively:
+     *     foreach ($message->getHeaders() as $name => $values) {
+     *         foreach ($values as $value) {
+     *             header(sprintf('%s: %s', $name, $value), false);
+     *         }
+     *     }
+     *
+     * While header names are not case-sensitive, getHeaders() will preserve the
+     * exact case in which headers were originally specified.
+     *
+     * @return string[][] Returns an associative array of the message's headers. Each
+     *     key MUST be a header name, and each value MUST be an array of strings
+     *     for that header.
      */
     public function getHeaders()
     {
@@ -146,7 +166,13 @@ class ApiResponse
     }
 
     /**
-     * Gets single header value
+     * Retrieves a message header value by the given case-insensitive name.
+     *
+     * This method returns an array of all the header values of the given
+     * case-insensitive header name.
+     *
+     * If the header does not appear in the message, this method MUST return an
+     * empty array.
      *
      * @param string $name Case-insensitive header field name.
      * @return string[] An array of string values as provided for the given
