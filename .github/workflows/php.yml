@@ -15,7 +15,7 @@ jobs:
           # @todo need to bump phpunit for 8.0 testing
           # - "8.0"
     steps:
-      - shell: bash
+      - name: "Set credentials"
         env:
           CREDENTIALS: ${{ secrets.CREDENTIALS }}    
       - name: "Checkout"
