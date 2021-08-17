@@ -136,7 +136,7 @@ JSON;
      */
     public function testFetch()
     {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+        $this->expectException('Klarna\Exceptions\NotApplicableException');
 
         $reports = new Orders($this->connector, 'test');
         $reports->fetch();

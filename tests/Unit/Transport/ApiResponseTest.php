@@ -20,11 +20,12 @@
 namespace Klarna\Rest\Tests\Unit\Transport;
 
 use Klarna\Rest\Transport\ApiResponse;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 /**
  * Unit test cases for the UserAgent class.
  */
-class ApiResponseTest extends \PHPUnit_Framework_TestCase
+class ApiResponseTest extends BaseTestCase
 {
     /**
      * Make sure the default user agent components are present.

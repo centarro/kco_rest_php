@@ -36,7 +36,7 @@ class PayoutsTest extends ResourceTestCase
      */
     public function testFetch()
     {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+        $this->expectException('Klarna\Exceptions\NotApplicableException');
 
         $reports = new Payouts($this->connector);
         $reports->fetch();

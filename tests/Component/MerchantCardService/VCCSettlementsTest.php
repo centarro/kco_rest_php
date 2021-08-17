@@ -75,7 +75,7 @@ JSON;
      */
     public function testFetch()
     {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+        $this->expectException('Klarna\Exceptions\NotApplicableException');
 
         $vccSettlements = new VCCSettlements($this->connector);
         $vccSettlements->fetch();

@@ -24,12 +24,13 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Klarna\Rest\Transport\Connector;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 use SebastianBergmann\PHPLOC\Log\CSV\History;
 
 /**
  * Base component test case class.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends BaseTestCase
 {
     const USERNAME = '1234';
 

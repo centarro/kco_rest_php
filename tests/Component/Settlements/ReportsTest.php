@@ -162,7 +162,7 @@ class ReportsTest extends ResourceTestCase
      */
     public function testFetch()
     {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+        $this->expectException('Klarna\Exceptions\NotApplicableException');
 
         $reports = new Reports($this->connector);
         $reports->fetch();

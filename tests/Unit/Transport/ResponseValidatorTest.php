@@ -21,12 +21,13 @@ namespace Klarna\Rest\Tests\Unit\Transport;
 
 use Klarna\Rest\Transport\ResponseValidator;
 use Klarna\Rest\Transport\ApiResponse;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Unit test cases for the ResponseValidator class.
  */
-class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
+class ResponseValidatorTest extends TestCase
 {
     /**
      * @var ResponseInterface
@@ -95,10 +96,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLocationException()
     {
-        $this->setExpectedException(
-            'RuntimeException',
-            'Response is missing a Location header'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Response is missing a Location header');
 
         $this->validator->getLocation();
     }
@@ -146,10 +145,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testContentTypeMissingException()
     {
-        $this->setExpectedException(
-            'RuntimeException',
-            'Response is missing a Content-Type header'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Response is missing a Content-Type header');
 
         $this->validator->contentType('text/plain');
     }
@@ -166,10 +163,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
             ->with('Content-Type')
             ->will($this->returnValue(['text/plain']));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Unexpected Content-Type header received: text/plain'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Unexpected Content-Type header received: text/plain');
 
         $this->validator->contentType('application/json');
     }
@@ -216,10 +211,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Unexpected response status code: 201'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Unexpected response status code: 201');
 
         $this->validator->status('200');
     }
@@ -235,10 +228,8 @@ class ResponseValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getStatus')
             ->will($this->returnValue('200'));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Unexpected response status code: 200'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Unexpected response status code: 200');
 
         $this->validator->status(['201', '204']);
     }

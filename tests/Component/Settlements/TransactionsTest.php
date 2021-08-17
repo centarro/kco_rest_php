@@ -79,7 +79,7 @@ JSON;
      */
     public function testFetch()
     {
-        $this->setExpectedException('Klarna\Exceptions\NotApplicableException');
+        $this->expectException('Klarna\Exceptions\NotApplicableException');
 
         $reports = new Transactions($this->connector);
         $reports->fetch();

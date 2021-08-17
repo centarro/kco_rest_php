@@ -122,10 +122,8 @@ class GuzzleConnectorTest extends TestCase
             ->with($this->request)
             ->will($this->throwException($exception));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Something went terribly wrong'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Something went terribly wrong');
 
         $this->object->send($this->request);
     }
@@ -148,10 +146,8 @@ class GuzzleConnectorTest extends TestCase
             ->with($this->request)
             ->will($this->throwException($exception));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Something went terribly wrong'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Something went terribly wrong');
 
         $this->object->send($this->request);
     }
@@ -175,10 +171,8 @@ class GuzzleConnectorTest extends TestCase
             ->with($this->request)
             ->will($this->throwException($exception));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Something went terribly wrong'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Something went terribly wrong');
 
         $this->object->send($this->request);
     }
@@ -201,10 +195,8 @@ class GuzzleConnectorTest extends TestCase
             ->with($this->request)
             ->will($this->throwException($exception));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Something went terribly wrong'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Something went terribly wrong');
 
         $this->object->send($this->request);
     }
@@ -236,10 +228,8 @@ class GuzzleConnectorTest extends TestCase
             ->with($this->request)
             ->will($this->throwException($exception));
 
-        $this->setExpectedException(
-            'RuntimeException',
-            'Something went terribly wrong'
-        );
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Something went terribly wrong');
 
         $this->object->send($this->request);
     }
