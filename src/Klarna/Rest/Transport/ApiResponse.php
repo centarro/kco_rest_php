@@ -99,7 +99,7 @@ class ApiResponse
      * @param array $headers
      * @return self
      */
-    public function setHeaders($headers)
+    public function setHeaders(array $headers)
     {
         $this->headerNames = $this->headers = [];
         foreach ($headers as $header => $value) {
@@ -126,7 +126,7 @@ class ApiResponse
      * Sets single HTTP header value.
      *
      * @param string $name
-     * @param array $values
+     * @param mixed $values
      * @return self
      */
     public function setHeader($name, $values)
@@ -195,7 +195,7 @@ class ApiResponse
     /**
      * Gets the Location header helper.
      *
-     * @return string Location if exists, null otherwise
+     * @return string|null Location if exists, null otherwise.
      */
     public function getLocation()
     {
