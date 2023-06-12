@@ -106,6 +106,7 @@ abstract class Resource extends \ArrayObject
      * 
      * @param array $array Data to be exchanged
      */
+    #[\ReturnTypeWillChange]
     public function exchangeArray($array)
     {
         $id = $this->getId();
