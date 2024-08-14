@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Copyright 2019 Klarna AB
  *
@@ -106,9 +109,10 @@ abstract class Resource extends \ArrayObject
      * 
      * @param array $array Data to be exchanged
      */
-    public function exchangeArray($array)
+    public function exchangeArray($array): array
     {
         $id = $this->getId();
+        $return = $this;
 
         if (!is_null($array)) {
             parent::exchangeArray($array);
@@ -116,6 +120,8 @@ abstract class Resource extends \ArrayObject
         if (is_null($this->getId()) && !is_null($id)) {
             $this->setId($id);
         }
+
+        return (array) $return;
     }
 
     /**

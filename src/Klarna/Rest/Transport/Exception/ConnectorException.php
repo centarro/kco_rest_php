@@ -45,6 +45,13 @@ class ConnectorException extends \RuntimeException
      */
     protected $correlationId;
 
+  /**
+   * The service version.
+   *
+   * @var string
+   */
+    protected $serviceVersion;
+
     /**
      * Constructs a connector exception instance.
      *
@@ -57,7 +64,7 @@ class ConnectorException extends \RuntimeException
         $data = self::setDefaultData($data);
 
         $messages = implode(', ', $data['error_messages']);
-        $serviceVersion = isset($data['service_version']) ? $data['service_version'] : '';
+        $serviceVersion = $data['service_version'] ?? '';
         $message = "{$data['error_code']}: {$messages} (#{$data['correlation_id']})";
         $message .= $serviceVersion ? " ServiceVersion: $serviceVersion" : '';
 

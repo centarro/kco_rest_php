@@ -35,7 +35,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Sets up the test fixtures.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->rootPath = dirname(dirname(__DIR__));
         $this->credentials = json_decode(getenv('CREDENTIALS'), true);
@@ -51,7 +51,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         if (!empty($this->credentials) && is_array($this->credentials)) {
             foreach ($this->credentials as $field => $value) {
                 $field = strtoupper($field);
-                putenv("${field}=${value}");
+                putenv("{$field}={$value}");
             }
         }
     }
@@ -73,6 +73,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function isTextPresents($pattern, $output)
     {
-        return preg_match("/${pattern}/ims", $output) === 1;
+        return preg_match("/{$pattern}/ims", $output) === 1;
     }
 }

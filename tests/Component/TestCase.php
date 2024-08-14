@@ -63,7 +63,7 @@ class TestCase extends BaseTestCase
     /**
      * Sets up the test fixtures.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mock = new MockHandler();
         $this->history = [];

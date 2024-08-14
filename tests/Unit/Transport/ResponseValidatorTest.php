@@ -42,7 +42,7 @@ class ResponseValidatorTest extends TestCase
     /**
      * Set up the test fixtures
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->response = $this->getMockBuilder(ApiResponse::class)
             ->getMock();

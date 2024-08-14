@@ -62,7 +62,7 @@ class GuzzleConnectorTest extends TestCase
     /**
      * Set up the test fixtures.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -274,7 +274,7 @@ class GuzzleConnectorTest extends TestCase
 
         $userAgent = $connector->getUserAgent();
         $this->assertInstanceOf('Klarna\Rest\Transport\UserAgent', $userAgent);
-        $this->assertContains('Library/Klarna.kco_rest_php', strval($userAgent));
+        $this->assertStringContainsString('Library/Klarna.kco_rest_php', strval($userAgent));
     }
 
     /**

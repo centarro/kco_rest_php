@@ -155,11 +155,9 @@ JSON;
         $this->assertAuthorization($request);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testRetrieveException()
     {
+        $this->expectException(\RuntimeException::class);
         $button = new ButtonKeys($this->connector);
         $button->retrieve();
     }
