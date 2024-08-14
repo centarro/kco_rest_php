@@ -88,7 +88,8 @@ class GuzzleConnector implements ConnectorInterface
 
         if ($userAgent === null) {
             $class = new \ReflectionClass($client);
-            $version = $class->hasConstant('MAJOR_VERSION') ? $class->getConstant('MAJOR_VERSION') : $class->getConstant('VERSION');
+            $version = $class->hasConstant('MAJOR_VERSION') ? $class->getConstant('MAJOR_VERSION') :
+              $class->getConstant('VERSION');
             $userAgent = UserAgent::createDefault(['Guzzle/' . $version]);
         }
         $this->userAgent = $userAgent;

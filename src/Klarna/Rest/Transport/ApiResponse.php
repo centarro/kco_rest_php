@@ -104,8 +104,9 @@ class ApiResponse
         $this->headerNames = $this->headers = [];
         foreach ($headers as $header => $value) {
             if (is_int($header)) {
-                // Numeric array keys are converted to int by PHP but having a header name '123' is not forbidden by the spec
-                // and also allowed in withHeader(). So we need to cast it to string again for the following assertion to pass.
+                // Numeric array keys are converted to int by PHP but having a header name '123' is not forbidden
+                // by the spec and also allowed in withHeader().
+                // So we need to cast it to string again for the following assertion to pass.
                 $header = (string) $header;
             }
             $this->assertHeader($header);

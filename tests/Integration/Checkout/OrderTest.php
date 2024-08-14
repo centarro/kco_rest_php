@@ -117,6 +117,6 @@ class OrderTest extends TestCase
 
         putenv('PASSWORD=wrong_password');
         $output = $this->execFile($this->rootPath . '/docs/examples/CheckoutAPI/handling_exceptions.php');
-        $this->assertTrue($this->isTextPresents('Unexpected response HTTP status 401', $output));
+        $this->assertTrue($this->isTextPresents('Code: 401', $output));
     }
 }

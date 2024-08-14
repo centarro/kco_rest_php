@@ -106,7 +106,7 @@ abstract class Resource extends \ArrayObject
     /**
      * Overrides: Stores the ID KEY field in order to restore it after exchanging the array without
      * the ID field.
-     * 
+     *
      * @param array $array Data to be exchanged
      */
     public function exchangeArray($array): array

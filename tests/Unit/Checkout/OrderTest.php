@@ -74,12 +74,12 @@ class OrderTest extends TestCase
             ->will($this->returnValue('{}'));
 
 
-      $this->response->expects($this->exactly(2))
-          ->method('getHeader')
-          ->willReturnMap([
-              ['Content-Type', ['application/json']],
-              ['Location', ['http://somewhere/a-path']]
-          ]);
+        $this->response->expects($this->exactly(2))
+            ->method('getHeader')
+            ->willReturnMap([
+                ['Content-Type', ['application/json']],
+                ['Location', ['http://somewhere/a-path']]
+            ]);
 
         $order = new Order($this->connector);
         $location = $order->create($data)
@@ -126,12 +126,12 @@ class OrderTest extends TestCase
             ->method('getStatus')
             ->will($this->returnValue('201'));
 
-      $this->response
-          ->expects($this->exactly(1))
-          ->method('getHeader')
-          ->willReturnMap([
-              ['Content-Type', []]
-        ]);
+        $this->response
+            ->expects($this->exactly(1))
+            ->method('getHeader')
+            ->willReturnMap([
+                ['Content-Type', []]
+          ]);
 
         $order = new Order($this->connector);
 
