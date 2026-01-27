@@ -38,7 +38,7 @@ class SessionsTest extends ResourceTestCase
     {
         $json =<<<JSON
 {
-    "distribution_url": "https://api.klarna.com/hpp/v1/sessions/9cbc9884-1fdb-45a8-9694-9340340d0436/distribution",
+    "distribution_url": "https://api.kustom.co/hpp/v1/sessions/9cbc9884-1fdb-45a8-9694-9340340d0436/distribution",
     "redirect_url": "https://buy.klarna.com/hpp/9cbc9884-1fdb-45a8-9694-9340340d0436"
 }
 JSON;

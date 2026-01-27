@@ -31,14 +31,10 @@ $merchantId = getenv('USERNAME') ?: 'K123456_abcd12345';
 $sharedSecret = getenv('PASSWORD') ?: 'sharedSecret';
 
 /*
-EU_BASE_URL = 'https://api.klarna.com'
-EU_TEST_BASE_URL = 'https://api.playground.klarna.com'
-NA_BASE_URL = 'https://api-na.klarna.com'
-NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
-OC_BASE_URL = 'https://api-oc.klarna.com'
-OC_TEST_BASE_URL = 'https://api-oc.playground.klarna.com'
+BASE_URL = 'https://api.kustom.co'
+TEST_BASE_URL = 'https://api.playground.kustom.co'
 */
-$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
+$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL;
 
 define('DEBUG_SDK', true); // Enable the DEBUG MODE to see the Headers
 

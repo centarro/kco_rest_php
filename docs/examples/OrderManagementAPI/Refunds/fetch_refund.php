@@ -33,14 +33,10 @@ $orderId = getenv('ORDER_ID') ?: '12345';
 $refundId = getenv('REFUND_ID') ?: '34567';
 
 /*
-EU_BASE_URL = 'https://api.klarna.com'
-EU_TEST_BASE_URL = 'https://api.playground.klarna.com'
-NA_BASE_URL = 'https://api-na.klarna.com'
-NA_TEST_BASE_URL = 'https://api-na.playground.klarna.com'
-OC_BASE_URL = 'https://api-oc.klarna.com'
-OC_TEST_BASE_URL = 'https://api-oc.playground.klarna.com'
+BASE_URL = 'https://api.kustom.co'
+TEST_BASE_URL = 'https://api.playground.kustom.co'
 */
-$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
+$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL;
 
 $connector = Klarna\Rest\Transport\GuzzleConnector::create(
     $merchantId,

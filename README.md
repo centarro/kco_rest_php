@@ -117,7 +117,7 @@ The output will look like:
 ```
 DEBUG MODE: Request
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    GET : https://api.playground.klarna.com/customer-token/v1/tokens/TOKEN
+    GET : https://api.playground.kustom.co/customer-token/v1/tokens/TOKEN
 Headers : {"User-Agent":["Library\/Klarna.kco_rest_php_3.1.0 (Guzzle\/6.3.3; curl\/7.54.0) OS\/Darwin_17.5.0 Language\/PHP_5.6.37"]}
    Body :
 

@@ -67,7 +67,7 @@ class GuzzleConnector implements ConnectorInterface
      *
      * Example usage:
      *
-     *     $client = new \GuzzleHttp\Client(['base_url' => 'https://api.klarna.com']);
+     *     $client = new \GuzzleHttp\Client(['base_url' => 'https://api.kustom.co']);
      *     $connector = new \Klarna\Transport\Connector($client, '0', 'sharedSecret');
      *
      *
@@ -273,7 +273,7 @@ class GuzzleConnector implements ConnectorInterface
     public static function create(
         $merchantId,
         $sharedSecret,
-        $baseUrl = self::EU_BASE_URL,
+        $baseUrl = self::BASE_URL,
         ?UserAgentInterface $userAgent = null
     ) {
         $client = new Client(['base_uri' => $baseUrl]);

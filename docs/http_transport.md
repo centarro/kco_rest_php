@@ -33,7 +33,7 @@ require('/path/to/project/vendor/autoload.php');
 
 $merchantId = 'K123456_abcd12345';
 $sharedSecret = 'sharedSecret';
-$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
+$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL;
 
 // Create Guzzle HTTP Transport Connector
 $connector = Klarna\Rest\Transport\GuzzleConnector::create(
@@ -59,7 +59,7 @@ require('/path/to/project/src/autoload.php');
 
 $merchantId = 'K123456_abcd12345';
 $sharedSecret = 'sharedSecret';
-$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::EU_TEST_BASE_URL;
+$apiEndpoint = Klarna\Rest\Transport\ConnectorInterface::TEST_BASE_URL;
 
 // Create cURL HTTP Transport Connector
 $connector = Klarna\Rest\Transport\CURLConnector::create(

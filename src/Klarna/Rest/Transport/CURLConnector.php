@@ -268,7 +268,7 @@ class CURLConnector implements ConnectorInterface
     public static function create(
         $merchantId,
         $sharedSecret,
-        $baseUrl = self::EU_BASE_URL,
+        $baseUrl = self::BASE_URL,
         UserAgentInterface $userAgent = null
     ) {
         return new static($merchantId, $sharedSecret, $baseUrl, $userAgent);
