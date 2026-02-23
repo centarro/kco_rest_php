@@ -10,7 +10,7 @@ Shop at your favorite stores today and experience the freedom to pay later with 
 
 ## Getting started
 
-SDK covers all of Klarna API: https://developers.klarna.com/api/
+SDK covers all of Kustom API: https://docs.kustom.co/
 
 ### Prerequisites
 * PHP 8.1 or above
@@ -23,9 +23,7 @@ SDK covers all of Klarna API: https://developers.klarna.com/api/
 Before getting a production account you can get a playground one.
 Register here to be able to test your SDK integration before go live:
 
-- https://playground.eu.portal.klarna.com/developer-sign-up - for EU countries
-- https://playground.us.portal.klarna.com/developer-sign-up - for the US
-
+https://portal.playground.kustom.co/onboarding
 
 ## PHP SDK Installation and Usage
 
